@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AddNewTodo from "./AddNewTodo";
 
 const TodoList = () => {
@@ -8,6 +8,8 @@ const TodoList = () => {
         { text: 'Go out', id: 3}
     ]);
 
+    const [count, setCount] = useState(0);
+
     const addTodo = (text) => {
         // pakai speard element untuk menampung todo kedalam array baru
         setTodos([
@@ -16,6 +18,20 @@ const TodoList = () => {
             {text, id: Math.random()}
         ]);
     };
+
+    // contoh bila ingin menjalankan fungsi ini sekali
+    // useEffect(() => {
+    //     console.log('use effect', todos);
+    // }, []);
+
+    // contoh bila ingin menjalankan fungsi ini sesuai kondisi tertentu
+    useEffect(() => {
+        console.log('use effect', todos);
+    }, [todos]);
+
+    useEffect(() => {
+        console.log('use effect', count);
+    }, [count]);    
 
     return (
         <div>
@@ -27,6 +43,7 @@ const TodoList = () => {
                 })}
             </ul>
             <AddNewTodo addTodo={addTodo}/>
+            <button onClick={() => setCount(count + 1)}>Score: {count}</button>
         </div>
     )
 };
