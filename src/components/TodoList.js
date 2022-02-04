@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import AddNewTodo from "./AddNewTodo";
 
 const TodoList = () => {
     const [todos, setTodos] = useState([
@@ -7,10 +8,12 @@ const TodoList = () => {
         { text: 'Go out', id: 3}
     ]);
 
-    const addTodo = () => {
+    const addTodo = (text) => {
+        // pakai speard element untuk menampung todo kedalam array baru
         setTodos([
             ...todos,
-            {text: 'Learn Hooks', id: Math.random()}
+            // text : text bisa ditulis text saja
+            {text, id: Math.random()}
         ]);
     };
 
@@ -23,7 +26,7 @@ const TodoList = () => {
                     )
                 })}
             </ul>
-            <button onClick={addTodo}>Add a todo</button>
+            <AddNewTodo addTodo={addTodo}/>
         </div>
     )
 };
